@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import "./Home.scss";
+import Slider from "../../components/Slider/Slider";
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className="home">
+      <Slider />
+    </div>
+  );
 }
