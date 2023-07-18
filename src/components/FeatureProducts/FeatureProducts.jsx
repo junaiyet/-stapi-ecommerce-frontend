@@ -1,46 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FeatureProducts.scss";
 import Card from "../Card/Card";
+import axios from "axios";
+// import process from "dotenv/config";
+import dotenv from "dotenv";
 
 export default function FeatureProducts({ type }) {
-  const data = [
-    {
-      id: 1,
-      img: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      img2: "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: " grapic ",
-      isNew: true,
-      oldPrice: 19,
-      price: 17,
-    },
-    {
-      id: 2,
-      img: "https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      img2: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: "Long sleve grapic asdf",
-      isNew: true,
-      oldPrice: 10,
-      price: 15,
-    },
-    {
-      id: 3,
-      img: "https://images.pexels.com/photos/1667088/pexels-photo-1667088.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      img2: "https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: "Somers",
-      isNew: false,
-      oldPrice: 30,
-      price: 25,
-    },
-    {
-      id: 4,
-      img: "https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      img2: "https://images.pexels.com/photos/1667088/pexels-photo-1667088.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: "Ioasdf",
-      isNew: true,
-      oldPrice: 12,
-      price: 19,
-    },
-  ];
+  // console.log(import.meta.env.VITE_API_URL);
+
+  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const featchData = async () => {
+      try {
+        const res = await axios.get(import.meta.env.VITE_API_URL + "products?populate=*", {
+          headers: {
+            Authorization: "junaiyet" + import.meta.env.VITE_API_TOKEN,
+          },
+        });
+        setData(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    featchData();
+  }, []);
+  console.log(data);
   return (
     <div className="featureProducts">
       <div className="top">
