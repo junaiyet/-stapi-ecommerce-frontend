@@ -6,7 +6,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 
 export default function FeatureProducts({ type }) {
-  // console.log(import.meta.env.VITE_API_URL);
+  console.log(import.meta.env.VITE_API_URL);
 
   const [products, setProducts] = useState([]);
   const [data, setData] = useState([]);
